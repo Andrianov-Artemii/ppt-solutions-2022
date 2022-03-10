@@ -12,8 +12,8 @@ jobs:
     - name: Send request
       uses: appleboy/telegram-action@master
       with:
-        to: ${{ secrets.TELEGRAM_API_TOKEN }}
-        token: ${{ secrets.TELEGRAM_CHAT_ID }}
+        to: ${{ secrets.TELEGRAM_CHAT_ID }}
+        token: ${{ secrets.TELEGRAM_API_TOKEN }}
         message: |
             ${{ github.actor }} переоткрыл заявку на проверку, надо поглазеть👀!         
             Ссылка на PR: ${{github.event.pull_request._links.html.href}}
