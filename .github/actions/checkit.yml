@@ -1,0 +1,17 @@
+jobs:
+  security-tests:
+    runs-on: ubuntu-latest
+    steps:
+    - name: github dump
+      env:
+        dump: ${{ toJson(github.event.pull_request._links.html)}}
+      run: echo "$dump"
+    - name: Send request
+      uses: appleboy/telegram-action@master
+      with:
+        to: ${{ secrets.TELEGRAM_API_TOKEN }}
+        token: ${{ secrets.TELEGRAM_CHAT_ID }}
+        message: |
+            ${{ github.actor }} переоткрыл заявку на проверку, надо поглазеть👀!         
+            Ссылка на PR: ${{github.event.pull_request._links.html.href}}
+    
