@@ -5,5 +5,5 @@ COPY . /checkit-bot
 RUN go build . 
 RUN chmod +x runner.sh
 RUN echo $(ls -all)
-RUN echo $(pwd)
-ENTRYPOINT [ "/checkit-bot/runner.sh" ] 
+RUN cd /checkit-bot
+ENTRYPOINT [ "./runner.sh" ]
