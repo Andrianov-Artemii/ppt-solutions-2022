@@ -5,4 +5,4 @@ COPY . /checkit-bot
 
 RUN go build .
 ENV RUN_KEYS=null
-CMD ./ppt-alert-bot $1
+CMD ./ppt-alert-bot $RUN_KEYS
