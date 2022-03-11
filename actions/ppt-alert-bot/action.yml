@@ -6,6 +6,9 @@ inputs:
     required: true
     default: 'none'
 
+outputs:
+  output-task:
+
 runs:
   using: 'docker'
   image: docker://andrianovartemii/checkit:latest
