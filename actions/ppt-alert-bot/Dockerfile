@@ -2,5 +2,7 @@ FROM golang:latest
 RUN mkdir checkit-bot
 WORKDIR /checkit-bot
 COPY . /checkit-bot
-RUN go build . ; chmod +x runner.sh
+RUN go build . 
+RUN chmod +x runner.sh
+RUN ls -all
 ENTRYPOINT [ "./runner.sh" ] 
