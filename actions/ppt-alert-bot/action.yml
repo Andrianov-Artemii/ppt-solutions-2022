@@ -1,0 +1,15 @@
+name: 'Push bot'
+description: 'Greet someone and record the time'
+inputs:
+  input-keys:  # id of input
+    description: 'input-keys'
+    required: true
+    default: 'none'
+outputs:
+  time: # id of output
+    description: 'The time we greeted you'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.input-keys }}

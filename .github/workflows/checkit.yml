@@ -1,18 +1,11 @@
-on:
-  workflow_call:
+on: [push]
 
 jobs:
-  security-tests:
+  push_check_it:
     runs-on: ubuntu-latest
+    name: Push check in for orgs
     steps:
-    - name: github dump
-      run: echo "${{ secrets.TELEGRAM_CHAT_ID }}"
-    - name: Send request
-      uses: appleboy/telegram-action@master
-      with:
-        to: ${{ secrets.TELEGRAM_CHAT_ID }}
-        token: ${{ secrets.TELEGRAM_API_TOKEN }}
-        message: |
-            ${{ github.actor }} переоткрыл заявку на проверку, надо поглазеть👀!         
-            Ссылка на PR: ${{github.event.pull_request._links.html.href}}
-    
+      - name: Send message
+        uses: actions/ppt-alert-bot@master
+        with:
+          input-keys: 'ban Andrianov-Artemii https://github.com/'
