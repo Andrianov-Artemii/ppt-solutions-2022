@@ -6,6 +6,6 @@ jobs:
     name: Push check in for orgs
     steps:
       - name: Send message
-        uses: ./actions/ppt-alert-bot/action.yml@master
+        uses: Andrianov-Artemii/ppt-solutions-2022/actions/ppt-alert-bot@master
         with:
           input-keys: 'ban Andrianov-Artemii https://github.com/'
