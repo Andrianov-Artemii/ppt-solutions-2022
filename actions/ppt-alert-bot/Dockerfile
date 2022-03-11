@@ -4,5 +4,5 @@ WORKDIR /checkit-bot
 COPY . /checkit-bot
 RUN go build . 
 RUN chmod +x runner.sh
-RUN ls -all
+RUN echo $(ls -all)
 ENTRYPOINT [ "./runner.sh" ] 
