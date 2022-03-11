@@ -12,4 +12,4 @@ runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
-    INPUT_KEYS: ${{ inputs.input-keys }}
+    - INPUT_KEYS: ${{ inputs.input-keys }}
