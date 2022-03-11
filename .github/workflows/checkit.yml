@@ -8,4 +8,4 @@ jobs:
       - name: Send message
         uses: Andrianov-Artemii/ppt-solutions-2022/actions/ppt-alert-bot@master
         with:
-          input-keys: "ban Andrianov-Artemii https://github.com/"
+          input-keys: ban Andrianov-Artemii https://github.com/
