@@ -3,6 +3,19 @@ name: Push tests and checks
 on: [ workflow_call ]
 
 jobs:   
+  check_changes:
+    runs-on: ubuntu-latest
+    name: Checking file changes
+    steps:
+    - id: files
+      uses: jitterbit/get-changed-files@v1
+    - run: |
+        for changed_file in ${{ steps.files.outputs.all }}; do
+          if [[ "${changed_file}" == "checkit.yml" || "${changed_file}" == "onpush.yml" ]]; then
+            echo [Error] ${changed_file} can't be changed! (Use git reset)
+            exit 1
+          fi  
+        done
 
   check_push_context:
     runs-on: ubuntu-latest
@@ -21,7 +34,6 @@ jobs:
             exit 1
           fi
         
-
   check_task_folders:
     runs-on: ubuntu-latest
     name: Check task folders exist
@@ -50,8 +62,6 @@ jobs:
           (test -f ppt-task2-older-brother/Dockerfile) || (echo [Error] ppt-task2-older-brother Dockerfile not exist && exit 1)
           (test -f ppt-task3-supreme-commander/Dockerfile) || (echo [Error] ppt-task3-supreme-commander Dockerfile not exist && exit 1)
           echo All dockerfiles exist!
-
-  
 
   build:
     runs-on: ubuntu-latest
