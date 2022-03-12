@@ -5,8 +5,6 @@ name: Call orgs
 on: [ workflow_call ] 
 
 jobs:
-  check_context:
-    uses: ./.github/workflows/onpush.yml
 
   send_notif:
     needs: [ check_context ]
