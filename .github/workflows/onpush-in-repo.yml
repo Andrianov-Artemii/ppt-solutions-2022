@@ -54,6 +54,7 @@ jobs:
   check_docker_files:
     runs-on: ubuntu-latest
     name: Check dockerfiles exist
+    if: ${{ false }}
     needs: [check_push_context, check_yamls_equal]
     steps: 
       - uses: actions/checkout@v2
