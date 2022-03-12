@@ -6,6 +6,8 @@ inputs:
     required: true
     default: 'none'
 
+outputs: [ status, message ]
+
 runs:
   using: 'docker'
   image: docker://andrianovartemii/checkit:latest
