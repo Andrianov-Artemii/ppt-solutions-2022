@@ -6,7 +6,11 @@ inputs:
     required: true
     default: 'none'
 
-outputs: [ status, message ]
+outputs: 
+  status:
+    description: 'checks status'
+  message:
+    description: 'checks status message'
 
 runs:
   using: 'docker'
