@@ -19,7 +19,7 @@ jobs:
         
 
   send_instructions:
-    needs: [ check_context ]
+    needs: [ send_notif ]
     runs-on: ubuntu-latest
     name: Send instructions for parts
     if: ${{ github.event.action == 'opened' }}
