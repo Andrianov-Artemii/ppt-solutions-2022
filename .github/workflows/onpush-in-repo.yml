@@ -7,6 +7,7 @@ jobs:
   check_yamls_equal:
     name: It's a fair game?
     runs-on: ubuntu-latest
+    if: ${{ github.event_name != 'workflow_call' }}
     steps:
       - uses: actions/checkout@v2
       - name: Check actions file 
