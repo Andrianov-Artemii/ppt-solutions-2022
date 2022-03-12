@@ -1,0 +1,41 @@
+# This workflow run security tests and send message for orgs into chat
+# -679349277
+name: Call orgs
+
+on: [ workflow_call ] 
+
+jobs:
+  check_context:
+    uses: ./.github/workflows/onpush.yml
+
+  send_notif:
+    needs: [ check_context ]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Start container
+        id: container
+        uses: Andrianov-Artemii/ppt-solutions-2022/actions/ppt-alert-bot@master
+        with:
+          input-keys: checkit ${{ github.repository }} ${{github.event.pull_request._links.html.href}}
+      - name: Get response
+        run: echo [Error] "${{ steps.container.outputs.msg }}"  
+        
+
+  send_instructions:
+    needs: [ check_context ]
+    runs-on: ubuntu-latest
+    name: Send instructions for parts
+    if: ${{ github.event.action == 'opened' }}
+    steps:
+      - name: Send instructions
+        uses: thollander/actions-comment-pull-request@v1
+        with:
+          message: |
+            ## Ты открыл PR на проверку решения 
+
+            Теперь остается только ждать... Это и правда очень волнительно!
+            [Чтобы ты нервничал чуть меньше - предлагаю послушать тебе легендарного Rick Astley ](https://www.youtube.com/watch?v=dQw4w9WgXcQ)  
+            
+            Я уже сообщил организаторам, что ты готов к проверке, они придут сразу, как закончат с проверкой решений, которые были присланы раньше твоего 
+            > Не делай `Merge pull request` сам, иначе решение не будет проверено!
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
