@@ -7,7 +7,6 @@ on: [ workflow_call ]
 jobs:
 
   send_notif:
-    needs: [ check_context ]
     runs-on: ubuntu-latest
     steps:
       - name: Start container
