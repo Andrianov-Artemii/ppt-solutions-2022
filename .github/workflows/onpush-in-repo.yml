@@ -11,7 +11,7 @@ jobs:
       uses: jitterbit/get-changed-files@v1
     - run: |
         for changed_file in ${{ steps.files.outputs.all }}; do
-          if [[ "${changed_file}" == "checkit.yml" || "${changed_file}" == "onpush.yml" ]]; then
+          if [[ "${changed_file}" == ".github/workflows/onpush.yml" || "${changed_file}" == ".github/workflows/checkit.yml" ]]; then
             echo [Error] ${changed_file} can't be changed! (Use git reset)
             exit 1
           fi  
