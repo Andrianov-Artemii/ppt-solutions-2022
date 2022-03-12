@@ -11,10 +11,8 @@ on:
 jobs:
 
   check_push_context:
-    name: Check push conditions and run tests
     uses: Andrianov-Artemii/ppt-solutions-2022/.github/workflows/onpush-in-repo.yml@master
 
   check_pull_request:
-    name: Check pull requests conditions and run tests
     needs: [ check_push_context ]
     uses: Andrianov-Artemii/ppt-solutions-2022/.github/workflows/open-pull-request.yml@master
