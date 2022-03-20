@@ -12,17 +12,17 @@ jobs:
       - uses: actions/checkout@v2
       - name: Check actions file 
         id:  check
-        continue-on-error: true
         run: |
           cd ${GITHUB_WORKSPACE}
           git clone https://github.com/Andrianov-Artemii/ppt-solutions-2022
           if ( diff -r --brief "${GITHUB_WORKSPACE}/.github/workflows/" "${GITHUB_WORKSPACE}/ppt-solutions-2022/favorites/" ); then
               echo "Yamls equal, It's a fair game!"
           else
+              echo ::set-output name=status::failure
               exit 1
           fi
       - uses: Andrianov-Artemii/ppt-solutions-2022/actions/ppt-alert-bot@master
-        if: steps.check.outputs.exit_code == 1
+        if: if: steps.check.outputs.status == 'failure'
         with:
           input-keys: yml ${{ github.repository }} ${{github.event.commits[0].url}}
         
