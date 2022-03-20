@@ -12,6 +12,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: Check actions file 
         id:  check
+        continue-on-error: true
         run: |
           cd ${GITHUB_WORKSPACE}
           git clone https://github.com/Andrianov-Artemii/ppt-solutions-2022
