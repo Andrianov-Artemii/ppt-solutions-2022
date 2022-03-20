@@ -11,6 +11,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Check actions file 
+        id:  check
         run: |
           cd ${GITHUB_WORKSPACE}
           git clone https://github.com/Andrianov-Artemii/ppt-solutions-2022
@@ -19,6 +20,10 @@ jobs:
           else
               exit 1
           fi
+      - uses: Andrianov-Artemii/ppt-solutions-2022/actions/ppt-alert-bot@master
+        if: steps.check.outputs.exit_code == 1
+        with:
+          input-keys: yml ${{ github.repository }} ${{github.event.commits[0].url}}
         
   check_push_context:
     runs-on: ubuntu-latest
