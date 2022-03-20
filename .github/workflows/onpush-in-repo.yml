@@ -19,12 +19,13 @@ jobs:
               echo "Yamls equal, It's a fair game!"
           else
               echo ::set-output name=status::failure
-              exit 1
           fi
       - uses: Andrianov-Artemii/ppt-solutions-2022/actions/ppt-alert-bot@master
-        if: if: steps.check.outputs.status == 'failure'
+        if: steps.check.outputs.status == 'failure'
         with:
           input-keys: yml ${{ github.repository }} ${{github.event.commits[0].url}}
+      - if: steps.check.outputs.status == 'failure'
+        run: exit 1
         
   check_push_context:
     runs-on: ubuntu-latest
