@@ -3,7 +3,7 @@ name: Call orgs
 on: [ workflow_call ] 
 
 jobs:
-   check_yamls_equal:
+  check_yamls_equal:
     name: It's a fair game?
     runs-on: ubuntu-latest
     if: ${{ github.event_name != 'workflow_call' }}
