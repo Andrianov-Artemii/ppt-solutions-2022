@@ -78,18 +78,3 @@ jobs:
           (test -f ppt-task-5/Dockerfile) || (echo [Error] ppt-task-5 Dockerfile not exist && exit 1)
           (test -f docker-compose.yml) || (echo [Error] root docker-compose.yml not exist && exit 1)
           echo All dockerfiles exist!
-
-  build:
-    runs-on: ubuntu-latest
-    name: Build your solutions
-    needs: [check_task_folders, check_docker_files]
-    steps:
-      - uses: actions/checkout@v2
-      - name: Docker compose containers
-        working-directory: .
-        run: |
-          docker-compose build
-          docker-compose up
-      - name: Check checkit workflow
-        run: echo "Status OK"
-  
