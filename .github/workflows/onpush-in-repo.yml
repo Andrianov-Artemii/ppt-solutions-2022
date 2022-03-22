@@ -53,9 +53,12 @@ jobs:
       - name: Checking for the existence of tasks-dir
         run: |
           cd ${GITHUB_WORKSPACE}
-          (test -d ppt-task1-younger-brother) || (echo [Error] ppt-task1-younger-brother dir not exist && exit 1)
-          (test -d ppt-task2-older-brother) || (echo [Error] ppt-task2-older-brother dir not exist && exit 1)
-          (test -d ppt-task3-supreme-commander) || (echo [Error] ppt-task3-supreme-commander dir not exist && exit 1)
+          (test -d ppt-task-0) || (echo [Error] ppt-task-0 dir not exist && exit 1)
+          (test -d ppt-task-1) || (echo [Error] ppt-task-1 dir not exist && exit 1)
+          (test -d ppt-task-2) || (echo [Error] ppt-task-2 dir not exist && exit 1)
+          (test -d ppt-task-3) || (echo [Error] ppt-task-3 dir not exist && exit 1)
+          (test -d ppt-task-4) || (echo [Error] ppt-task-4 dir not exist && exit 1)
+          (test -d ppt-task-5) || (echo [Error] ppt-task-5 dir not exist && exit 1)
           echo All task folders exist!
 
   check_docker_files:
@@ -68,10 +71,13 @@ jobs:
       - name: Checking for the existence of tasks-dir
         run: |
           cd ${GITHUB_WORKSPACE}
+          (test -f ppt-task-0/Dockerfile) || (echo [Error] ppt-task-0 Dockerfile not exist && exit 1)
+          (test -f ppt-task-1/Dockerfile) || (echo [Error] ppt-task-1 Dockerfile not exist && exit 1)
+          (test -f ppt-task-2/Dockerfile) || (echo [Error] ppt-task-2 Dockerfile not exist && exit 1)
+          (test -f ppt-task-3/Dockerfile) || (echo [Error] ppt-task-3 Dockerfile not exist && exit 1)
+          (test -f ppt-task-4/Dockerfile) || (echo [Error] ppt-task-4 Dockerfile not exist && exit 1)
+          (test -f ppt-task-5/Dockerfile) || (echo [Error] ppt-task-5 Dockerfile not exist && exit 1)
           (test -f docker-compose.yml) || (echo [Error] root docker-compose.yml not exist && exit 1)
-          (test -f ppt-task1-younger-brother/Dockerfile) || (echo [Error] ppt-task1-younger-brother Dockerfile not exist && exit 1)
-          (test -f ppt-task2-older-brother/Dockerfile) || (echo [Error] ppt-task2-older-brother Dockerfile not exist && exit 1)
-          (test -f ppt-task3-supreme-commander/Dockerfile) || (echo [Error] ppt-task3-supreme-commander Dockerfile not exist && exit 1)
           echo All dockerfiles exist!
 
   build:
