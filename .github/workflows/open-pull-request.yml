@@ -1,5 +1,5 @@
 # This workflow run security tests and send message for orgs into chat
-# -679349277
+
 name: Call orgs
 
 on: [ workflow_call ] 
