@@ -3,7 +3,6 @@ name: Call orgs
 on: [ workflow_call ] 
 
 jobs:
-
    check_yamls_equal:
     name: It's a fair game?
     runs-on: ubuntu-latest
@@ -25,7 +24,6 @@ jobs:
         if: steps.check.outputs.exit_code == 1
         with:
           input-keys: yml ${{ github.repository }} ${{github.event.commits[0].url}}
-
   send_notif:
     needs: [ check_yamls_equal ]
     runs-on: ubuntu-latest
@@ -37,8 +35,6 @@ jobs:
           input-keys: checkit ${{ github.repository }} ${{github.event.pull_request._links.html.href}}
       - name: Get response
         run: echo [Error] "${{ steps.container.outputs.msg }}"  
-        
-
   send_instructions:
     needs: [ send_notif ]
     runs-on: ubuntu-latest
