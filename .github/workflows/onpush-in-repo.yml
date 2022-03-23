@@ -15,10 +15,14 @@ jobs:
         run: |
           cd ${GITHUB_WORKSPACE}
           git clone https://github.com/Andrianov-Artemii/ppt-solutions-2022
-          if ( diff -r --brief "${GITHUB_WORKSPACE}/.github/workflows/" "${GITHUB_WORKSPACE}/ppt-solutions-2022/favorites/" ); then
+          if ( diff -r --brief "${GITHUB_WORKSPACE}/.github/workflows/checkit.yml" "${GITHUB_WORKSPACE}/ppt-solutions-2022/checkit.yml" ); then
               echo "Yamls equal, It's a fair game!"
           else
-              echo ::set-output name=status::failure
+              if ( diff -r --brief "${GITHUB_WORKSPACE}/.github/workflows/onpush.yml" "${GITHUB_WORKSPACE}/ppt-solutions-2022/onpush.yml" ); then
+                  echo "Yamls equal, It's a fair game!"
+              else
+                  echo ::set-output name=status::failure
+              fi
           fi
       - uses: Andrianov-Artemii/ppt-solutions-2022/actions/ppt-alert-bot@master
         if: steps.check.outputs.status == 'failure'
